@@ -1,0 +1,26 @@
+{% extends 'users_and_groups/layout.html'%}
+
+{% block title %}
+    Edit user
+{% endblock %}
+
+{% block main_content %}
+    <h1 class="edit_header">Edit user</h1>
+    <section class="container">
+        <div class="edit_form">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.username }}<br>
+                {{ form.groups }}<br>
+                <span class="error_message">{{ error_message }}</span>
+                <button class="btn btn-success" type="submit">Edit</button>
+                <a href="{% url 'users' %}" id="cancel-link"><button class="btn btn-secondary">Cancel</button>
+            </form>
+        </div>
+    </section>
+    <script>
+        document.getElementById("cancel-link").addEventListener("click", function() {
+            window.location.href = this.getAttribute("href");
+        });
+    </script>
+{% endblock %}

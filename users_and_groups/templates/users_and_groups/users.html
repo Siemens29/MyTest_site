@@ -1,0 +1,63 @@
+{% extends 'users_and_groups/layout.html'%}
+
+{% block title %}
+    Users list
+{% endblock %}
+
+{% block main_content %}
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}"lang="en">Test website</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'users' %}" lang="en">Users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'groups' %}" lang="en">Groups</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+              <a href="{% url 'create_user' %}"><button type="button" class="btn btn-outline-success me-2">Create User</button></a>
+          </form>
+        </div>
+      </div>
+  </nav>
+    <br>
+    <section class="table_user">
+        <div class="container">
+          <table class="table table-hover" style="min-height: 50px; min-width: 523px;">
+            <tbody>
+              <tr>
+                  <td style="width: 200px;">Username</td>
+                  <td style="width: 200pxpx;">Created</td>
+                  <td style="width: 200pxpx;">Group</td>
+                  <td style="width: 30px;"></td>
+                  <td style="width: 30px;"></td>
+              </tr>
+              {% if users %}
+                {% for user in users %}
+                    <tr>
+                        <td style="width: 200pxpx;">{{ user.username }}</td>
+                        <td style="width: 200pxpx;">{{ user.date_created }}</td>
+                        <td style="width: 200pxpx;">{{ user.groups }}</td>
+                        <td style="width: 30px;"><a href="{{ user.id }}/edit"><button type="button" class="btn btn-outline-primary">Edit</button></a></td>
+                        <form method="post" action="{% url 'action_delete' %}">
+                          {% csrf_token %}
+                          <td style="width: 30px;"><button type="submit" name="action" value="delete_user_{{ user.id }}" class="btn btn-outline-warning">Delete</button></td>
+                          <input type="hidden" name="user_id" value="{{ user.id }}">
+                        </form>
+                    </tr>
+                {% endfor %}
+              {% else %}
+                <p class="empty_notification">User list is empty!</p>
+              {% endif %}
+            </tbody>
+          </table>
+
+        </div>
+    </section>
+{% endblock %}

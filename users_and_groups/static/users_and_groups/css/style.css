@@ -1,0 +1,52 @@
+* {
+    font-family:Arial, Helvetica, sans-serif;
+}
+.table_user, .table_groups {
+    margin-top: 100px;
+}
+
+nav {
+    background-color:rgb(209, 226, 248);
+}
+
+.navbarSupportedContent {
+    border: 20px;
+    border-color: rgb(231, 10, 10);
+}
+
+.empty_notification {
+    font-size: 20px;
+    line-height: 60px;
+    display: flex;
+    justify-content: center;
+    background-color: orange;
+    border-radius: 4px;
+}
+
+
+.create_header, .edit_header {
+    line-height: 60px;
+    display: flex;
+    justify-content: center;
+    background-color:rgb(209, 226, 248);
+    font-weight: 400;
+}
+
+.create_form, .edit_form {
+    width: 400px;
+    margin: 40px auto;
+    
+}
+
+.create_form .btn, .edit_form .btn {
+    width: 400px;
+    margin: 10px 0 10px 0;
+}
+
+.create_form textarea#id_desc, .edit_form textarea#id_desc {
+    width: 100%;
+}
+
+td {
+    text-align: center;
+}

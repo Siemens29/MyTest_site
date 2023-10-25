@@ -1,0 +1,26 @@
+{% extends 'users_and_groups/layout.html'%}
+
+{% block title %}
+    Create New Group
+{% endblock %}
+
+{% block main_content %}
+    <h1 class="create_header">Create new group</h1>
+    <section class="container">
+        <div class="create_form">
+            <form method="post">
+                {{ form.name }}<br>
+                {{ form.desc }}<br>
+                <span class="error_message">{{ error_message }}</span>
+                <button class="btn btn-success" type="submit">Create</button>
+                <a href="{% url 'groups' %}" id="cancel-link"><button class="btn btn-secondary">Cancel</button>
+                {% csrf_token %}
+            </form>
+        </div>
+    </section>
+    <script>
+        document.getElementById("cancel-link").addEventListener("click", function() {
+            window.location.href = this.getAttribute("href");
+        });
+    </script>
+{% endblock %}
